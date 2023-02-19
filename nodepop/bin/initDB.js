@@ -1,8 +1,12 @@
 'use strict';
-
-const Anuncio = require('../models/Anuncios');
+const fs = require('fs')
+const Anuncio = require('../models/Anuncio');
 const connection = require('../lib/connectMongoose');
-const anunciosIniciales = require('../routes/api/anuncios_json')
+const path = require('path')
+const anunciosIniciales = require('../routes/api/anuncios-json')
+const anuncioData = fs.readFileSync(path.join(__dirname, '../routes/api/anuncios-json.json'))
+const init = JSON.parse(anuncioData)
+console.log(anunciosIniciales)
 
 main().catch(err => console.log('Hubo un error: ', err));
 
@@ -16,12 +20,13 @@ async function main() {
 }
 
 async function initAnuncios() {
-  // borrar todos los documentos de la colección de anuncios
+
+  // borra todos los documentos de la colección anuncios
   const deleted = await Anuncio.deleteMany();
   console.log(`Eliminados ${deleted.deletedCount} anuncios.`);
 
   // crear anuncios iniciales
-  const inserted = await Anuncio.insertMany([anunciosIniciales]);
-  
+  const inserted = await Anuncio.insertMany(init)
+
   console.log(`Creados ${inserted.length} anuncios`);
 }

@@ -4,7 +4,7 @@ const router = express.Router();
 const Anuncio = require('../../models/Anuncio')
 
 // creamos una instancia de Anuncio en memoria
-const anuncio = new Anuncio({ name: 'Boli Bic', venta: true, precio: 1, foto: "./images/boliBic.png", tags: ['work']});
+const anuncio = new Anuncio({ name: 'Boli Bic', venta: true, precio: 1, foto: "./images/anuncios/boliBic.png", tags: ['work']});
 
 anuncio.save((err, anuncioCreado) => {
     if(err) throw err;

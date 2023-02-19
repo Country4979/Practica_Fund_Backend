@@ -1,0 +1,23 @@
+[
+    {
+    "name": "Bicicleta Playmobil",
+    "venta": true,
+    "precio": 230.15,
+    "foto": "./images/anuncios/bici.png",
+    "tags": [ "lifestyle", "motor"]
+    },
+    {
+    "name": "iPhone 3GS",
+    "venta": false,
+    "precio": 50.00,
+    "foto": "./images/anuncios/iphone.png",
+    "tags": [ "lifestyle", "mobile"]
+    },
+    {
+    "name": "Boli Bic",
+    "venta": true,
+    "precio": 1,
+    "foto": "./images/anuncios/boliBic.png",
+    "tags": [ "work"]
+    }
+    ]
