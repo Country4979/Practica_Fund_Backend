@@ -1,28 +1,27 @@
 'use strict';
 
-const Agente = require('../models/Agente');
+const Anuncio = require('../models/Anuncios');
 const connection = require('../lib/connectMongoose');
+const anunciosIniciales = require('../routes/api/anuncios_json')
 
-main().catch(err => console.log('Hubo un error', err));
+main().catch(err => console.log('Hubo un error: ', err));
 
 async function main() {
 
-  // inicializamos colección de agentes
-  await initAgentes();
+  // inicializamos colección de anuncios
+  await initAnuncios();
 
   connection.close();
 
 }
 
-async function initAgentes() {
-  // borrar todos los documentos de la colección de agentes
-  const deleted = await Agente.deleteMany();
-  console.log(`Eliminados ${deleted.deletedCount} agentes.`);
+async function initAnuncios() {
+  // borrar todos los documentos de la colección de anuncios
+  const deleted = await Anuncio.deleteMany();
+  console.log(`Eliminados ${deleted.deletedCount} anuncios.`);
 
-  // crear agentes iniciales
-  const inserted = await Agente.insertMany([
-    { name: 'Brown', age: 32 },
-    { name: 'Jones', age: 46 }
-  ]);
-  console.log(`Creados ${inserted.length} agentes`);
+  // crear anuncios iniciales
+  const inserted = await Anuncio.insertMany([anunciosIniciales]);
+  
+  console.log(`Creados ${inserted.length} anuncios`);
 }

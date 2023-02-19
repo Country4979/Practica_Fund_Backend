@@ -1,7 +1,19 @@
-// creamos una instancia de Agente en memoria
-const agente = new Anuncio({ name: 'Boli Bic', venta: true, precio: 1, foto: "boliBic.png", tags: ['work']});
+const express = require('express');
+//const { routes } = require('../../app');
+const router = express.Router();
+const Anuncio = require('../../models/Anuncio')
 
-anuncios.save((err, anuncioCreado) => {
-    if(err) throw err;
-    console.log(`Anuncio ${anuncioCreado.name} creado.`)
+router.get('/', async (req, res, next) => {
+    try {
+    const anuncios = await Anuncio.lista();
+
+    res.json({ results: anuncios });
+
+  } catch (error) {
+    next(error);
+  }
+
 });
+
+
+module.exports = router;
