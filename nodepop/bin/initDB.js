@@ -3,10 +3,8 @@ const fs = require('fs')
 const Anuncio = require('../models/Anuncio');
 const connection = require('../lib/connectMongoose');
 const path = require('path')
-const anunciosIniciales = require('../routes/api/anuncios-json')
 const anuncioData = fs.readFileSync(path.join(__dirname, '../routes/api/anuncios-json.json'))
 const init = JSON.parse(anuncioData)
-console.log(anunciosIniciales)
 
 main().catch(err => console.log('Hubo un error: ', err));
 

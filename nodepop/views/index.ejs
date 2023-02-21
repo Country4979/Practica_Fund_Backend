@@ -3,17 +3,37 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <style>
+
+
+    </style>
+    
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    
+    <h2>Listado de Tags existentes</h2>
+    <% tags.forEach(tags => { %>
+      <p><%= tags.name %></p>
+    <% }) %>
 
     <h2>Listado de anuncios disponibles</h2>
-    <% anuncios.forEach(anuncio => { %>
-      <h3><p><%= anuncio.name %></p></h3>
-      <p>Precio: <%= anuncio.precio %> €</p>
-      <img src="<%= anuncio.foto %>" alt="Imagen descriptiva del artículo anunciado">
-      <p>Tags: "<%= anuncio.tags %>" </p>
-    <% }) %>
+    <div>
+      <% anuncios.forEach(anuncio => { %>
+      <div class="anuncio">
+        <h3><p><%= anuncio.name %></p></h3>
+        <div class = "article_price">
+          <p>Precio: <%= anuncio.precio %> €</p>
+        <div class = "article_tag"></div>
+          <p>Tags: "<%= anuncio.tags %>" </p>
+        </div>
+        <div class = "article_image">
+          <img src="<%= anuncio.foto %>" alt="Imagen descriptiva del artículo anunciado">
+        </div>
+      <% }) %>
+    </div>
+  </div>
   </body>
 </html>

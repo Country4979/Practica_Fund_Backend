@@ -4,20 +4,41 @@
     "venta": true,
     "precio": 230.15,
     "foto": "./images/anuncios/bici.png",
-    "tags": [ "lifestyle", "motor"]
+    "tags": [ "Lifestyle", "Motor"]
     },
     {
     "name": "iPhone 3GS",
     "venta": false,
     "precio": 50.00,
-    "foto": "./images/anuncios/iphone.png",
-    "tags": [ "lifestyle", "mobile"]
+    "foto": "./images/anuncios/iPhone.png",
+    "tags": [ "Lifestyle", "Mobile"]
     },
     {
     "name": "Boli Bic",
     "venta": true,
-    "precio": 1,
+    "precio": 1.00,
     "foto": "./images/anuncios/boliBic.png",
-    "tags": [ "work"]
+    "tags": [ "Work"]
+    },
+    {
+    "name": "Látigo de Indiana Jones",
+    "venta": false,
+    "precio": 50.00,
+    "foto": "./images/anuncios/latigo.png",
+    "tags": [ "Work"]
+    },
+    {
+    "name": "i-Pod 7ª Generación",
+    "venta": true,
+    "precio": 122.50,
+    "foto": "./images/anuncios/ipod.png",
+    "tags": [ "Lifestyle"]
+    },
+    {
+    "name": "El Halcón Callejero",
+    "venta": false,
+    "precio": 9999.99,
+    "foto": "./images/anuncios/halconCallejero.png",
+    "tags": [ "Lifestyle"]
     }
     ]
