@@ -5,33 +5,73 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
 
     <style>
+      body {
+        margin: 0;
+        padding: 8px;
+      }
+      header{
+        text-align: center;
+      }
+      header h1{
+        font-size: 50px;
+      }
+      header p {
+        font-size: 40px;
+      }
 
-
+      .TagList {
+        font-size: 20px;
+        padding-top: 20px;
+        text-align: center;
+      }
+      .AdsList {
+        font-size: 20px;
+        padding-top: 20px;
+        text-align: center;
+      }
+      .AdsListed {
+        padding-bottom: 5px;
+      }
+      .anuncio {
+        padding-bottom: 5px;
+        border-style: solid;
+        border-color: grey;
+        border-radius: 25%;
+      }
     </style>
     
   </head>
   <body>
+    <header>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    
-    <h2>Listado de Tags existentes</h2>
+  </header>
+    <div class="TagList">
+    <h2>Tags existentes</h2>
     <% tags.forEach(tags => { %>
-      <p><%= tags.name %></p>
+      <p><%= tags.name.join(', ') %></p>
     <% }) %>
-
-    <h2>Listado de anuncios disponibles</h2>
-    <div>
+  </div>
+  <div class="AdsList">
+    <h2>Anuncios disponibles</h2>
+    <div class="AdsListed">
       <% anuncios.forEach(anuncio => { %>
-      <div class="anuncio">
+        <div class="anuncio">
         <h3><p><%= anuncio.name %></p></h3>
+
         <div class = "article_price">
-          <p>Precio: <%= anuncio.precio %> €</p>
+          <% if (anuncio.sale) { %>
+            <p>Precio de venta: <%= anuncio.price %> €</p>
+          <% } else { %>
+            <p>Se busca por: <%= anuncio.price %> €</p>
+          <% } %>
         <div class = "article_tag"></div>
-          <p>Tags: "<%= anuncio.tags %>" </p>
+          <p>Tags: "<%= anuncio.tag.join(', ') %>" </p>
         </div>
         <div class = "article_image">
-          <img src="<%= anuncio.foto %>" alt="Imagen descriptiva del artículo anunciado">
+          <img src="<%= anuncio.photo %>" alt="Imagen descriptiva del artículo anunciado">
         </div>
+      </div>
       <% }) %>
     </div>
   </div>

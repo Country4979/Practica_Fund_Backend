@@ -1,44 +1,44 @@
 [
     {
     "name": "Bicicleta Playmobil",
-    "venta": true,
-    "precio": 230.15,
-    "foto": "./images/anuncios/bici.png",
-    "tags": [ "Lifestyle", "Motor"]
+    "sale": true,
+    "price": 230.15,
+    "photo": "./images/anuncios/bici.png",
+    "tag": [ "Lifestyle", "Motor"]
     },
     {
     "name": "iPhone 3GS",
-    "venta": false,
-    "precio": 50.00,
-    "foto": "./images/anuncios/iPhone.png",
-    "tags": [ "Lifestyle", "Mobile"]
+    "sale": false,
+    "price": 50.00,
+    "photo": "./images/anuncios/iPhone.png",
+    "tag": [ "Lifestyle", "Mobile"]
     },
     {
     "name": "Boli Bic",
-    "venta": true,
-    "precio": 1.00,
-    "foto": "./images/anuncios/boliBic.png",
-    "tags": [ "Work"]
+    "sale": true,
+    "price": 1.00,
+    "photo": "./images/anuncios/boliBic.png",
+    "tag": [ "Work"]
     },
     {
-    "name": "Látigo de Indiana Jones",
-    "venta": false,
-    "precio": 50.00,
-    "foto": "./images/anuncios/latigo.png",
-    "tags": [ "Work"]
+    "name": "Latigo de Indiana Jones",
+    "sale": false,
+    "price": 50.00,
+    "photo": "./images/anuncios/latigo.png",
+    "tag": [ "Work"]
     },
     {
     "name": "i-Pod 7ª Generación",
-    "venta": true,
-    "precio": 122.50,
-    "foto": "./images/anuncios/ipod.png",
-    "tags": [ "Lifestyle"]
+    "sale": true,
+    "price": 122.50,
+    "photo": "./images/anuncios/ipod.png",
+    "tag": [ "Lifestyle"]
     },
     {
-    "name": "El Halcón Callejero",
+    "name": "Halcón Callejero, El",
     "venta": false,
-    "precio": 9999.99,
-    "foto": "./images/anuncios/halconCallejero.png",
-    "tags": [ "Lifestyle"]
+    "price": 9999.99,
+    "photo": "./images/anuncios/halconCallejero.png",
+    "tag": [ "Lifestyle"]
     }
     ]

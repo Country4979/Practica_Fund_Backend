@@ -2,40 +2,57 @@ const express = require('express');
 const router = express.Router();
 const Anuncio = require('../../models/Anuncio')
 
-//Devuelve una lista de anuncios
+//Returns a list of ads
 router.get('/', async (req, res, next) => {
     try {
-      
+      //Tags list
+      res.locals.tags = [
+        { name: ['Work','Lifestyle', 'Motor','Mobile']}
+      ];
+
       //filters
       const filterByName = req.query.name;
       const filterByPrice = req.query.price;
-      const filterByVenta = req.query.venta;
+      const filterBySale = req.query.sale;
+      const filterByTag = req.query.tag;
       
       //Pagination
       const skip = req.query.skip;
       const limit = req.query.limit;
-      
+
+      const sort = req.query.sort;
+      const fields = req.query.fields;
       
       const filter = {};
       
       if (filterByName) {
         
-        filter.name = filterByName;
-
+        filter.name = { $regex: filterByName, $options:'i' }; //Obvia mayúsculas y minúsculas y permite búsqueda por palabras
+        //res.render('index', { filterByPrice });
       }
       
       if (filterByPrice) {
-        filter.price = filterByPrice;
+        filter.price = filterByPrice
+        
+        //$lt lower than
+        //$gt greater than
+        
       }
       
-      if (filterByVenta){
-        filter.venta = filterByVenta;     
+      if (filterBySale){
+        filter.sale = filterBySale;
+        //res.render('index', { filterBySale });     
       }
 
-      const anuncios = await Anuncio.lista(filter, skip, limit);
+      if (filterByTag){
+        filter.tag = { $regex: filterByTag, $options:'i' }
+        //res.render('index', { filterBysale });
+      }
+
+      const anuncios = await Anuncio.lista(filter, skip, limit, sort, fields);
       
-      res.json({ results: anuncios });
-      
+      res.locals.anuncios = anuncios; //({ results: anuncios });
+      res.render('index');
 
     } catch (error) {
       next(error);
@@ -44,8 +61,7 @@ router.get('/', async (req, res, next) => {
 });
 
 
-// Crear un anuncio
-
+// Create an advertisement
 router.post('/', async(req, res, next) => {
   try {
     
@@ -62,8 +78,8 @@ router.post('/', async(req, res, next) => {
     res.json ({ result: anuncioPersistido });
 
   } catch (err) {
-    
     next(err)
   }
 })
+
 module.exports = router;
