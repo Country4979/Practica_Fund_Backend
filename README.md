@@ -73,16 +73,24 @@ For developer mode, type npm run dev to start server
 
 You can access to he NodePop main page writing http://localhost:3000 in your browser. If an error occurs, type http://127.0.0.1:3000.
 
-If c
 
+If port 3000 is already busy, access the file "package.jason and replace with the following text into the line 7,after "dev":
 
-You can make searches writing in the url box of your browser. 
+                        "cross-env DEBUG=nodepop:* nodemon PORT=3001 ./bin/www"
+
+If port 3001 is already busy, try with another one typing other number in PORT=value.
 
 ### Querys
 
+You can search typing in the url box of your browser.
+You can type directly the query after the initial url for obtain the web page or type "api/anuncios?query for a json response:
+    -Web: localhost:port/query
+    -Json: localhost:port/api/anuncios?query
+
 #### Prices
 
-Para buscar rangos de precios:
-
-locaslhost:port/api/anuncios/range/valor1-valor2
+Exact price: locaslhost:port/api/anuncios/valor or localhost:port/api/anuncios?price=value
+Price range: locaslhost:port/api/anuncios/range/value1-value2
+Peice "Lower than": locaslhost:port/api/anuncios/range/0-value2
+Price "Greater than": locaslhost:port/api/anuncios/range/value1-10000
 

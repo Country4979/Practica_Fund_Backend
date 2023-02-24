@@ -89,6 +89,57 @@ router.get('/range/:price', async (req, res, next) => {
   }
 });
 
+//Greater then price
+router.get('/:price', async (req, res, next) => {
+  try {
+
+    let price = req.params.price;
+  
+    const anuncios = await Anuncio.priceGt(price);
+
+    res.locals.anuncios = anuncios;
+    res.json({results: anuncios});
+  
+  } catch (error) {
+    next(error)
+  }
+
+});
+
+//Greater then price
+router.get('/:price', async (req, res, next) => {
+  try {
+
+    let price = req.params.price;
+  
+    const anuncios = await Anuncio.priceGt(price);
+
+    res.locals.anuncios = anuncios;
+    res.json({results: anuncios});
+  
+  } catch (error) {
+    next(error)
+  }
+
+});
+
+//Lowe then price
+router.get('/:price', async (req, res, next) => {
+  try {
+
+    let price = req.params.price;
+  
+    const anuncios = await Anuncio.priceLt(price);
+
+    res.locals.anuncios = anuncios;
+    res.json({results: anuncios});
+  
+  } catch (error) {
+    next(error)
+  }
+
+});
+
 // Create an advertisement
 router.post('/', async(req, res, next) => {
   try {

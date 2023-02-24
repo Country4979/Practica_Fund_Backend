@@ -32,17 +32,17 @@ anuncioSchema.statics.price = function(price) {
   return query.exec();
 }
 
-/*anuncioSchema.statics.priceGt = function(price) {
-  const newPrice = price + '-';
+anuncioSchema.statics.priceGt = function(price) {
+  const newPrice = price.slice(-1);
   const query = Anuncio.find({ price: {'$gte':  price } });
   return query.exec();
 }
 
 anuncioSchema.statics.priceLt = function(price) {
-  const newPrice = '-' + price;
-  const query = Anuncio.find({ price: {'$lte':  -price } });
+  const newPrice = price.slice(0);
+  const query = Anuncio.find({ price: {'$lte':  price } });
   return query.exec();
-}*/
+}
 
 
 // crear el modelo de anuncio
