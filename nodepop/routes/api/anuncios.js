@@ -56,14 +56,16 @@ router.get('/', async (req, res, next) => {
 });
 
 //TODO Search by price
-router.get('/:price', async (req, res, next) => {
+
+//Range price
+router.get('/range/:price', async (req, res, next) => {
   try {
 
     let price = req.params.price;
   
     const anuncios = await Anuncio.priceRange(price);
 
-    //res.locals.anuncios = anuncios;
+    res.locals.anuncios = anuncios;
     res.json({results: anuncios});
   
   } catch (error) {
