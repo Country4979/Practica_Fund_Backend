@@ -1,8 +1,9 @@
 const express = require('express');
+const { schema } = require('../../models/Anuncio');
 const router = express.Router();
 const Anuncio = require('../../models/Anuncio')
 
-//Returns a list of ads
+// Returns a list of ads
 router.get('/', async (req, res, next) => {
     try {
       //Tags list
@@ -10,56 +11,65 @@ router.get('/', async (req, res, next) => {
         { name: ['Work','Lifestyle', 'Motor','Mobile']}
       ];
 
-      //filters
+      // Filters
       const filterByName = req.query.name;
-      const filterByPrice = req.query.price;
       const filterBySale = req.query.sale;
       const filterByTag = req.query.tag;
-      
-      //Pagination
+      const filterByPrice = req.query.price;
+
+      // Pagination
       const skip = req.query.skip;
       const limit = req.query.limit;
 
       const sort = req.query.sort;
-      const fields = req.query.fields;
+
       
       const filter = {};
       
-      if (filterByName) {
-        
+      if (filterByName) { 
         filter.name = { $regex: filterByName, $options:'i' }; //Obvia mayúsculas y minúsculas y permite búsqueda por palabras
-        //res.render('index', { filterByPrice });
       }
       
       if (filterByPrice) {
         filter.price = filterByPrice
         
-        //$lt lower than
-        //$gt greater than
-        
       }
       
       if (filterBySale){
-        filter.sale = filterBySale;
-        //res.render('index', { filterBySale });     
+        filter.sale = filterBySale;    
       }
 
       if (filterByTag){
         filter.tag = { $regex: filterByTag, $options:'i' }
-        //res.render('index', { filterBysale });
       }
 
-      const anuncios = await Anuncio.lista(filter, skip, limit, sort, fields);
+      const anuncios = await Anuncio.lista(filter, skip, limit, sort);
       
-      res.locals.anuncios = anuncios; //({ results: anuncios });
+
+      res.locals.anuncios = anuncios;
+      console.log(anuncios.length);
       res.render('index');
 
     } catch (error) {
       next(error);
-    }
-    
+    }   
 });
 
+//TODO Search by price
+router.get('/:price', async (req, res, next) => {
+  try {
+
+    let price = req.params.price;
+  
+    const anuncios = await Anuncio.priceRange(price);
+
+    //res.locals.anuncios = anuncios;
+    res.json({results: anuncios});
+  
+  } catch (error) {
+    next(error)
+  }
+});
 
 // Create an advertisement
 router.post('/', async(req, res, next) => {
@@ -67,15 +77,17 @@ router.post('/', async(req, res, next) => {
     
     const anuncioData = req.body;
 
-    //Creamos una instancia de Anuncio
+    // Create an Ad instance
 
     const anuncio = new Anuncio(anuncioData);
 
-    //Persistimos en la BD lainstancia creada
+    // Persist in the DB the created instance
 
     const anuncioPersistido = await anuncio.save();
 
     res.json ({ result: anuncioPersistido });
+    console.log(`
+    Ad created successfully`)
 
   } catch (err) {
     next(err)

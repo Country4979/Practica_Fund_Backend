@@ -59,8 +59,30 @@ In the console go to MongoDB folder and:
 ./bin/mongod --dbpath ./data
 ```
 
+### DB resets
+
+Open a terminal and go to the API path "../nodepop>" and type "npm run initDB" to run the API.
+6 ads must been created.
+
 ### API starts
 
 Open a terminal and go to the API path "../nodepop>" and type "npm run" to run the API.
 For developer mode, type npm run dev to start server
+
+### Homepage
+
+You can access to he NodePop main page writing http://localhost:3000 in your browser. If an error occurs, type http://127.0.0.1:3000.
+
+If c
+
+
+You can make searches writing in the url box of your browser. 
+
+### Querys
+
+#### Prices
+
+Para buscar rangos de precios:
+
+locaslhost:port/api/anuncios/valor1-valor2
 

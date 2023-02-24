@@ -6,6 +6,7 @@ const Anuncio = require('../models/Anuncio')
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   try {
+
     //Tags list
     res.locals.tags = [
       { name: ['Work','Lifestyle', 'Motor','Mobile']}
@@ -14,6 +15,12 @@ router.get('/', async function(req, res, next) {
     const anuncios = await Anuncio.find();
     res.locals.anuncios = anuncios;
 
+       /* if (req.originalUrl.startsWith('/api/')) {
+        res.json({ resultado: anuncios });
+    } else {
+        res.locals.anuncios = anuncios;
+        res.render('index');
+    }*/
     res.render('index');
 
   } catch (err) {
