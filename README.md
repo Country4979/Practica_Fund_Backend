@@ -84,5 +84,5 @@ You can make searches writing in the url box of your browser.
 
 Para buscar rangos de precios:
 
-locaslhost:port/api/anuncios/valor1-valor2
+locaslhost:port/api/anuncios/range/valor1-valor2
 

@@ -26,6 +26,23 @@ anuncioSchema.statics.priceRange = function(price) {
   return query.exec();
 }
 
+anuncioSchema.statics.price = function(price) {
+  const newPrice = price;
+  const query = Anuncio.find({ price: price });
+  return query.exec();
+}
+
+/*anuncioSchema.statics.priceGt = function(price) {
+  const newPrice = price + '-';
+  const query = Anuncio.find({ price: {'$gte':  price } });
+  return query.exec();
+}
+
+anuncioSchema.statics.priceLt = function(price) {
+  const newPrice = '-' + price;
+  const query = Anuncio.find({ price: {'$lte':  -price } });
+  return query.exec();
+}*/
 
 
 // crear el modelo de anuncio

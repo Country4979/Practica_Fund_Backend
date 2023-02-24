@@ -57,6 +57,22 @@ router.get('/', async (req, res, next) => {
 
 //TODO Search by price
 
+//Exact price
+router.get('/:price', async (req, res, next) => {
+  try {
+
+    let price = req.params.price;
+  
+    const anuncios = await Anuncio.price(price);
+
+    res.locals.anuncios = anuncios;
+    res.json({results: anuncios});
+  
+  } catch (error) {
+    next(error)
+  }
+});
+
 //Range price
 router.get('/range/:price', async (req, res, next) => {
   try {
