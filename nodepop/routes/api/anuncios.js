@@ -11,6 +11,7 @@ router.get('/', async (req, res, next) => {
         { name: ['Work','Lifestyle', 'Motor','Mobile']}
       ];
 
+      
       // Filters
       const filterByName = req.query.name;
       const filterBySale = req.query.sale;
@@ -49,6 +50,13 @@ router.get('/', async (req, res, next) => {
 
       const anuncios = await Anuncio.lista(filter, skip, limit, sort, fields);
       
+      if (req.originalUrl.startsWith('/api/')) {
+        res.json({ results: anuncios });
+      } else {
+        res.locals.anuncios = anuncios;
+        res.render('index');
+      }
+
       //res.locals.anuncios = anuncios;
       function mensajes (anuncios) {
         if (anuncios.length > 0) {
@@ -59,7 +67,7 @@ router.get('/', async (req, res, next) => {
       };
 
       mensajes(anuncios)
-      res.json({results: anuncios})
+      //res.json({results: anuncios})
       //res.render('index');
 
     } catch (error) {
@@ -79,8 +87,6 @@ router.get('/tags', async (req, res, next) => {
 }
 });
 
-//TODO Search by price
-
 //Range price
 router.get('/:price', async (req, res, next) => {
   try {
@@ -89,8 +95,15 @@ router.get('/:price', async (req, res, next) => {
   
     const anuncios = await Anuncio.price(price);
 
+    if (req.originalUrl.startsWith('/api/')) {
+      res.json({ results: anuncios });
+    } else {
+      res.locals.anuncios = anuncios;
+      res.render('index');
+    }
+
     //res.locals.anuncios = anuncios;
-    res.json({results: anuncios});
+    //res.json({results: anuncios});
     //res.render('index')
   
   } catch (error) {

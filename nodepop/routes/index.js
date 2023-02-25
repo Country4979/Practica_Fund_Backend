@@ -29,8 +29,8 @@ router.get('/', async function(req, res, next) {
     next(err)
   }
 });
-
-/* GET querys. */
+/*
+/* GET querys. 
 router.get('/', async (req, res, next) => {
   try {
     // Filters
@@ -91,6 +91,6 @@ router.get('/range/:price', async (req, res, next) => {
     next(error)
   }
 });
-
+*/
 
 module.exports = router;
