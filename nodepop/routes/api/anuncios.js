@@ -57,7 +57,7 @@ router.get('/', async (req, res, next) => {
         res.render('index');
       }
 
-      //res.locals.anuncios = anuncios;
+      //Console msg
       function mensajes (anuncios) {
         if (anuncios.length > 0) {
           console.log('Hay resultados')
@@ -67,8 +67,6 @@ router.get('/', async (req, res, next) => {
       };
 
       mensajes(anuncios)
-      //res.json({results: anuncios})
-      //res.render('index');
 
     } catch (error) {
       next(error);
@@ -101,10 +99,6 @@ router.get('/:price', async (req, res, next) => {
       res.locals.anuncios = anuncios;
       res.render('index');
     }
-
-    //res.locals.anuncios = anuncios;
-    //res.json({results: anuncios});
-    //res.render('index')
   
   } catch (error) {
     next(error)
