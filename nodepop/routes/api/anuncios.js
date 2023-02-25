@@ -14,6 +14,7 @@ router.get('/', async (req, res, next) => {
       // Filters
       const filterByName = req.query.name;
       const filterBySale = req.query.sale;
+      // http://localhost:3000/api/anuncios?tag=Motor
       const filterByTag = req.query.tag;
       const filterByPrice = req.query.price;
 
@@ -42,9 +43,9 @@ router.get('/', async (req, res, next) => {
         filter.sale = filterBySale;    
       }
 
-      /*if (filterByTag){
+      if (filterByTag){
         filter.tag = filterByTag;
-      }*/
+      }
 
       const anuncios = await Anuncio.lista(filter, skip, limit, sort, fields);
       
@@ -66,6 +67,18 @@ router.get('/', async (req, res, next) => {
     }   
 });
 
+//  GET /api/anuncios/tags
+router.get('/tags', async (req, res, next) => {
+  try {
+
+  const tags = await Anuncio.distinctTags();
+  res.json({ results: tags });
+
+}catch (error) {
+  next(error);
+}
+});
+
 //TODO Search by price
 
 //Range price
@@ -83,19 +96,6 @@ router.get('/:price', async (req, res, next) => {
   } catch (error) {
     next(error)
   }
-});
-
-//  GET an /api/anuncios
-router.get('/', async (req, res, next) => {
-  try {
-    
-  const filterByTag = req.query.tag;
-  const tag = await Anuncio.distinctTags(filterByTag);
-  res.json({ results: tag });
-
-}catch (error) {
-  next(error);
-}
 });
 
 // Create an advertisement

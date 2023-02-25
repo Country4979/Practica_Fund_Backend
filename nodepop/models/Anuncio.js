@@ -45,8 +45,8 @@ anuncioSchema.statics.price = function(price) {
   }
 }
 
-anuncioSchema.statics.distinctTags = function(tag) {
-  const query = Anuncio.distinct(tag); // thenables
+anuncioSchema.statics.distinctTags = function() {
+  const query = Anuncio.distinct('tag');
   return query.exec();
 }
 
