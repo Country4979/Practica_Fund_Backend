@@ -1,7 +1,7 @@
 const { name } = require('ejs');
 const mongoose = require('mongoose');
 
-// definir el esquema de los anuncios
+// Define the ads scheme
 const anuncioSchema = mongoose.Schema({
     name: String,
     sale: Boolean,
@@ -10,49 +10,40 @@ const anuncioSchema = mongoose.Schema({
     tag: [String]
     });
 
- anuncioSchema.statics.webApi = function (req, res) {
-      if (req.originalUrl.startsWith('/api/')) {
-          res.json({ resultado: anuncios });
-      } else {
-          res.locals.anuncios = anuncios;
-          res.render('index');
-      }
-  };
-
-anuncioSchema.statics.lista = function(filtro, skip, limit, sort) {
+// Define the filter list
+anuncioSchema.statics.lista = function(filtro, skip, limit, sort, fields) {
   const query = Anuncio.find(filtro);
   query.skip(skip);
   query.limit(limit);
   query.sort(sort);
-  return query.exec();
-}
-
-anuncioSchema.statics.priceRange = function(price) {
-  const newPrice = price.split('-');
-  const price1 = newPrice[0];
-  const price2 = newPrice[1];
-  const query = Anuncio.find({ price: { $gte: price1, $lte: price2 } });
+  query.select(fields);
   return query.exec();
 }
 
 anuncioSchema.statics.price = function(price) {
-  const newPrice = price;
-  const query = Anuncio.find({ price: price });
-  return query.exec();
-}
+  const newPrice = price.split('-');
+  const price1 = newPrice[0];
+  const price2 = newPrice[1];
+  const exactPrice = price;
 
-anuncioSchema.statics.priceGt = function(price) {
-  const newPrice = price.slice(-1);
-  const query = Anuncio.find({ price: {'$gte':  price } });
-  return query.exec();
-}
 
-anuncioSchema.statics.priceLt = function(price) {
-  const newPrice = price.slice(0);
-  const query = Anuncio.find({ price: {'$lte':  price } });
-  return query.exec();
+  if (price1 && price2) {
+    const query = Anuncio.find({ price: { $gte: price1, $lte: price2 } });
+    return query.exec();
+  }
+  else if (price1) {
+    const query = Anuncio.find({ price: { $gte: price1} });
+    return query.exec();
+  }
+  else if (price2){
+    const query = Anuncio.find({ price: { $lte: price2} });
+    return query.exec();
+  }
+  else if (exactPrice){
+    const query = Anuncio.find({ price: { $eq: exactPrice} });
+    return query.exec();
+  }
 }
-
 
 // crear el modelo de anuncio
 const Anuncio = mongoose.model('Anuncio', anuncioSchema);
