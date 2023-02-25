@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('./lib/web-json')
 require('./lib/connectMongoose');
 
 var app = express();
@@ -24,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /**
  * API routes
- */
+*/
 app.use('/api/anuncios', require('./routes/api/anuncios'));
 
 

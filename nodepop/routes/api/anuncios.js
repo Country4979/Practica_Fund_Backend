@@ -1,7 +1,8 @@
 const express = require('express');
 const { schema } = require('../../models/Anuncio');
 const router = express.Router();
-const Anuncio = require('../../models/Anuncio')
+const Anuncio = require('../../models/Anuncio');
+
 
 // Returns a list of ads
 router.get('/', async (req, res, next) => {
@@ -46,9 +47,10 @@ router.get('/', async (req, res, next) => {
       const anuncios = await Anuncio.lista(filter, skip, limit, sort);
       
 
-      res.locals.anuncios = anuncios;
-      console.log(anuncios.length);
-      res.render('index');
+      //res.locals.anuncios = anuncios;
+      //console.log(anuncios.length);
+      res.json({results: anuncios})
+      //res.render('index');
 
     } catch (error) {
       next(error);
@@ -65,9 +67,9 @@ router.get('/:price', async (req, res, next) => {
   
     const anuncios = await Anuncio.price(price);
 
-    res.locals.anuncios = anuncios;
+    //res.locals.anuncios = anuncios;
     res.json({results: anuncios});
-  
+
   } catch (error) {
     next(error)
   }
@@ -81,7 +83,7 @@ router.get('/range/:price', async (req, res, next) => {
   
     const anuncios = await Anuncio.priceRange(price);
 
-    res.locals.anuncios = anuncios;
+    //res.locals.anuncios = anuncios;
     res.json({results: anuncios});
   
   } catch (error) {
@@ -97,33 +99,16 @@ router.get('/:price', async (req, res, next) => {
   
     const anuncios = await Anuncio.priceGt(price);
 
-    res.locals.anuncios = anuncios;
+    //res.locals.anuncios = anuncios;
     res.json({results: anuncios});
-  
+   
   } catch (error) {
     next(error)
   }
 
 });
 
-//Greater then price
-router.get('/:price', async (req, res, next) => {
-  try {
-
-    let price = req.params.price;
-  
-    const anuncios = await Anuncio.priceGt(price);
-
-    res.locals.anuncios = anuncios;
-    res.json({results: anuncios});
-  
-  } catch (error) {
-    next(error)
-  }
-
-});
-
-//Lowe then price
+//Lower than price
 router.get('/:price', async (req, res, next) => {
   try {
 
@@ -131,7 +116,7 @@ router.get('/:price', async (req, res, next) => {
   
     const anuncios = await Anuncio.priceLt(price);
 
-    res.locals.anuncios = anuncios;
+    //res.locals.anuncios = anuncios;
     res.json({results: anuncios});
   
   } catch (error) {

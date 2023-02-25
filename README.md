@@ -94,3 +94,6 @@ Price range: locaslhost:port/api/anuncios/range/value1-value2
 Peice "Lower than": locaslhost:port/api/anuncios/range/0-value2
 Price "Greater than": locaslhost:port/api/anuncios/range/value1-10000
 
+
+
+

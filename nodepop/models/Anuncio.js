@@ -10,6 +10,15 @@ const anuncioSchema = mongoose.Schema({
     tag: [String]
     });
 
+ anuncioSchema.statics.webApi = function (req, res) {
+      if (req.originalUrl.startsWith('/api/')) {
+          res.json({ resultado: anuncios });
+      } else {
+          res.locals.anuncios = anuncios;
+          res.render('index');
+      }
+  };
+
 anuncioSchema.statics.lista = function(filtro, skip, limit, sort) {
   const query = Anuncio.find(filtro);
   query.skip(skip);
