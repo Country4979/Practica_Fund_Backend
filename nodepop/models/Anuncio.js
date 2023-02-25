@@ -40,10 +40,16 @@ anuncioSchema.statics.price = function(price) {
     return query.exec();
   }
   else if (exactPrice){
-    const query = Anuncio.find({ price: { $eq: exactPrice} });
+    const query = Anuncio.find({ price : { $eq: exactPrice} });
     return query.exec();
   }
 }
+
+anuncioSchema.statics.distinctTags = function(tag) {
+  const query = Anuncio.distinct(tag); // thenables
+  return query.exec();
+}
+
 
 // crear el modelo de anuncio
 const Anuncio = mongoose.model('Anuncio', anuncioSchema);
