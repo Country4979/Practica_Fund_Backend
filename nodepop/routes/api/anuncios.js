@@ -24,7 +24,6 @@ router.get('/', async (req, res, next) => {
 
       const sort = req.query.sort;
 
-      
       const filter = {};
       
       if (filterByName) { 
@@ -46,11 +45,18 @@ router.get('/', async (req, res, next) => {
 
       const anuncios = await Anuncio.lista(filter, skip, limit, sort);
       
+      res.locals.anuncios = anuncios;
+      function mensajes (anuncios) {
+        if (anuncios.length > 0) {
+          console.log('Hay resultados')
+        } else {
+          console.log('No hay resultados que mostrar')
+        }
+      };
 
-      //res.locals.anuncios = anuncios;
-      //console.log(anuncios.length);
-      res.json({results: anuncios})
-      //res.render('index');
+      mensajes(anuncios)
+      //res.json({results: anuncios})
+      res.render('index');
 
     } catch (error) {
       next(error);
@@ -67,8 +73,9 @@ router.get('/:price', async (req, res, next) => {
   
     const anuncios = await Anuncio.price(price);
 
-    //res.locals.anuncios = anuncios;
-    res.json({results: anuncios});
+    res.locals.anuncios = anuncios;
+    //res.json({results: anuncios});
+    res.render('index')
 
   } catch (error) {
     next(error)
@@ -83,8 +90,9 @@ router.get('/range/:price', async (req, res, next) => {
   
     const anuncios = await Anuncio.priceRange(price);
 
-    //res.locals.anuncios = anuncios;
-    res.json({results: anuncios});
+    res.locals.anuncios = anuncios;
+    //res.json({results: anuncios});
+    res.render('index')
   
   } catch (error) {
     next(error)
@@ -99,13 +107,13 @@ router.get('/:price', async (req, res, next) => {
   
     const anuncios = await Anuncio.priceGt(price);
 
-    //res.locals.anuncios = anuncios;
-    res.json({results: anuncios});
-   
+    res.locals.anuncios = anuncios;
+    //res.json({results: anuncios});
+    res.render('index')
+    
   } catch (error) {
     next(error)
   }
-
 });
 
 //Lower than price
@@ -116,8 +124,9 @@ router.get('/:price', async (req, res, next) => {
   
     const anuncios = await Anuncio.priceLt(price);
 
-    //res.locals.anuncios = anuncios;
-    res.json({results: anuncios});
+    res.locals.anuncios = anuncios;
+    //res.json({results: anuncios});
+    res.render('index')
   
   } catch (error) {
     next(error)
@@ -140,8 +149,7 @@ router.post('/', async(req, res, next) => {
     const anuncioPersistido = await anuncio.save();
 
     res.json ({ result: anuncioPersistido });
-    console.log(`
-    Ad created successfully`)
+    console.log(`Ad created successfully`)
 
   } catch (err) {
     next(err)
