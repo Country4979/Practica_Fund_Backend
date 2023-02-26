@@ -15,6 +15,11 @@ Install dependencies:
 ```sh
 npm install 
 ```
+Install croos-env:
+
+```sh
+npm i cross-env
+```
 
 Script development mode set to cross-platform with croos-env, and default starts at port 3000 and directly with nodemom.
 

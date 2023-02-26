@@ -7,7 +7,7 @@ router.get('/', async function(req, res, next) {
   try {
 
     //Tags list
-    res.locals.tags = [
+    res.locals.listatags = [
       { name: ['Work','Lifestyle', 'Motor','Mobile']}
     ];
 

@@ -2,16 +2,13 @@ const express = require('express');
 const router = express.Router();
 const Anuncio = require('../../models/Anuncio');
 
-
 // Returns a list of ads
 router.get('/', async (req, res, next) => {
-    try {
-      //Tags list
-      res.locals.tags = [
-        { name: ['Work','Lifestyle', 'Motor','Mobile']}
-      ];
-
-      
+    try {  
+    //Tags list
+    res.locals.listaTag = [
+      { name: ['Work','Lifestyle', 'Motor','Mobile']}
+    ]
       // Filters
       const filterByName = req.query.name;
       const filterBySale = req.query.sale;
