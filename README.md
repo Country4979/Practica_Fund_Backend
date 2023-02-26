@@ -1,9 +1,8 @@
 # Practica_Fund_Backend
 Practice corresponding to the Fundamentals Backend, Node.js &amp; MongoDB module
 
-
-
 ## General info
+
 Used Framework: Express
 
 ```sh
@@ -53,6 +52,11 @@ Create a connection file with mongoose:
 
         module.exports = mongoose.connection;
 
+    ```
+Install nodemon:
+
+```sh
+npm i nodemon in API folder
 ```
 
 
@@ -64,6 +68,7 @@ In the console go to MongoDB folder and:
 ./bin/mongod --dbpath ./data
 ```
 
+
 ### DB resets
 
 Open a terminal and go to the API path "../nodepop>" and type "npm run initDB" to run the API.
@@ -71,8 +76,8 @@ Open a terminal and go to the API path "../nodepop>" and type "npm run initDB" t
 
 ### API starts
 
-Open a terminal and go to the API path "../nodepop>" and type "npm run" to run the API.
-For developer mode, type npm run dev to start server
+Open a terminal and go to the API path "../nodepop>" and type "npm start" to run the API.
+For developer mode, type "npm run dev" to start server.
 
 ### Homepage
 
@@ -89,15 +94,35 @@ If port 3001 is already busy, try with another one typing other number in PORT=v
 
 You can search typing in the url box of your browser.
 You can type directly the query after the initial url for obtain the web page or type "api/anuncios?query for a json response:
-    -Web: localhost:port/query
-    -Json: localhost:port/api/anuncios?query
+
+    -Web: http://localhost:port/query
+    -Json: http://localhost:port/api/anuncios?query
+
+Follow always the same syntaxis.
 
 #### Prices
 
-Exact price: locaslhost:port/api/anuncios/valor or localhost:port/api/anuncios?price=value
-Price range: locaslhost:port/api/anuncios/range/value1-value2
-Peice "Lower than": locaslhost:port/api/anuncios/range/0-value2
-Price "Greater than": locaslhost:port/api/anuncios/range/value1-10000
+Exact price: http://localhost:port/?price=value or http://localhost:port/api/anuncios?price=value
+Price range: http://locaslhost:port/value1-value2 or http://locaslhost:port/api/anuncios/range/value1-value2
+Price "Lower than": http://locaslhost:port/-value or http://locaslhost:port/api/anuncios/range/value
+Price "Greater than": http://locaslhost:port/value- or http://ocaslhost:port/api/anuncios/range/value-
+
+#### Tags
+
+http://localhost:3000/api/anuncios?tag=value
+
+http://localhost:3000/?tag=value
+
+You need type uppercase the first letter of the tag. You can see a list of available tags at the top of the page.
+You can add mora than 1 tag dor searching:
+
+http://localhost:3000/api/anuncios?tag=value1&tag=valu2
+
+#### Adding diferents tags
+http://localhost:3000/api/anuncios?tag=Work&price=50
+
+
+
 
 
 

@@ -36,7 +36,7 @@
     },
     {
     "name": "Halcón Callejero, El",
-    "venta": false,
+    "sale": false,
     "price": 9999.99,
     "photo": "../images/anuncios/halconCallejero.png",
     "tag": [ "Motor", "Work"]
