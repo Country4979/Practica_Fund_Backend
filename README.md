@@ -102,7 +102,7 @@ If port 3001 is already busy, try with another one typing other number in PORT=v
 You can search typing in the url box of your browser.
 You can type directly the query after the initial url for obtain the web page or type "api/anuncios?query for a json response:
 
-    -Web: http://localhost:port/query
+    -Web: http://localhost:port/?query
     -Json: http://localhost:port/api/anuncios?query
 
 Follow always the same syntaxis.
@@ -110,9 +110,9 @@ Follow always the same syntaxis.
 #### Prices
 
 Exact price: http://localhost:port/?price=value or http://localhost:port/api/anuncios?price=value
-Price range: http://locaslhost:port/value1-value2 or http://locaslhost:port/api/anuncios/range/value1-value2
-Price "Lower than": http://locaslhost:port/-value or http://locaslhost:port/api/anuncios/range/value
-Price "Greater than": http://locaslhost:port/value- or http://ocaslhost:port/api/anuncios/range/value-
+Price range: http://locaslhost:port/value1-value2 or http://locaslhost:port/api/anuncios/value1-value2
+Price "Lower than": http://locaslhost:port/-value or http://locaslhost:port/api/anuncios/-value
+Price "Greater than": http://locaslhost:port/value- or http://ocaslhost:port/api/anuncios/value-
 
 #### Tags
 
@@ -127,6 +127,7 @@ http://localhost:3000/api/anuncios?tag=value1&tag=valu2
 
 #### Adding diferents tags
 http://localhost:3000/api/anuncios?tag=Work&price=50
+http://localhost:3000/?tag=Work&price=50
 
 ### Adding ads
 
