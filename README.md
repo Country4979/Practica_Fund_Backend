@@ -76,12 +76,12 @@ In the console go to MongoDB folder and:
 ```
 
 
-### DB resets
+## DB resets
 
 Open a terminal and go to the API path "../nodepop>" and type "npm run initDB" to run the API.
 6 ads must been created.
 
-### API starts
+## API starts
 
 Open a terminal and go to the API path "../nodepop>" and type "npm start" to run the API.
 For developer mode, type "npm run dev" to start server.
