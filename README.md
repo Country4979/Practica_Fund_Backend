@@ -9,16 +9,34 @@ Used Framework: Express
 npx express-generator nodeapp --ejs
 ```
 
-Install dependencies:
+#### Install dependencies:
 
 ```sh
 npm install 
 ```
-Install croos-env:
+
+#### Install croos-env:
 
 ```sh
 npm i cross-env
 ```
+
+#### Install Mongoose
+
+In API path:
+
+```sh
+npm i mongoose
+```
+#### Install nodemon:
+
+In API folder
+
+```sh
+npm i nodemon 
+```
+
+### Settings
 
 Script development mode set to cross-platform with croos-env, and default starts at port 3000 and directly with nodemom.
 
@@ -26,39 +44,28 @@ Script development mode set to cross-platform with croos-env, and default starts
 "dev": "cross-env SET DEBUG=nodepop:* 3000 nodemon ./bin/www"
 ```
 
-Install Mongoose in API path:
-```sh
-npm i mongoose
-```
 
-Create a connection file with mongoose:
-    In API path create a folder called "lib" and create a file called "connectMongoose.js" inside with:
+#### Create a connection file with mongoose
+
+In API path create a folder called "lib" and create a file called "connectMongoose.js" inside with:
     
-    ```sh
-
-        const mongoose = require('mongoose');
-
-        mongoose.set('strictQuery', false);
-
-        mongoose.connection.on('error', err => {
-            console.log('Error de conexión ', err);
-        });
-
-        mongoose.connection.once('open', () => {
-            console.log('Conectado a MongoDB en ', mongoose.connection.name);
-        });
-
-        mongoose.connect('mongodb://127.0.0.1:27017/nodepop');
-
-        module.exports = mongoose.connection;
-
-    ```
-Install nodemon:
-
 ```sh
-npm i nodemon in API folder
-```
+    const mongoose = require('mongoose');
 
+    mongoose.set('strictQuery', false);
+
+    mongoose.connection.on('error', err => {
+        console.log('Error de conexión ', err);
+    });
+
+    mongoose.connection.once('open', () => {
+        console.log('Conectado a MongoDB en ', mongoose.connection.name);
+    });
+
+    mongoose.connect('mongodb://127.0.0.1:27017/nodepop');
+
+    module.exports = mongoose.connection;
+```
 
 ## Start a MongoDB Server in Macos or Linux
 
@@ -86,7 +93,7 @@ You can access to he NodePop main page writing http://localhost:3000 in your bro
 
 If port 3000 is already busy, access the file "package.jason and replace with the following text into the line 7,after "dev":
 
-                        "cross-env DEBUG=nodepop:* nodemon PORT=3001 ./bin/www"
+"cross-env DEBUG=nodepop:* nodemon PORT=3001 ./bin/www"
 
 If port 3001 is already busy, try with another one typing other number in PORT=value.
 
