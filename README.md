@@ -121,6 +121,12 @@ http://localhost:3000/api/anuncios?tag=value1&tag=valu2
 #### Adding diferents tags
 http://localhost:3000/api/anuncios?tag=Work&price=50
 
+### Adding ads
+
+For add others use a software like Postman. Select POST method, option "Body" and "x-www-form-urlencoded".
+Then, type the keys and values:
+name (text), sale (true o false), price (Number between 1 and 10000), photo (../images/anuncios/filename.extension) and tag (Work, Lifestyle, Motor, Mobile).
+
 
 
 

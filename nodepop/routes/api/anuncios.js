@@ -14,6 +14,7 @@ router.get('/', async (req, res, next) => {
       const filterBySale = req.query.sale;
       // http://localhost:3000/api/anuncios?tag=Motor
       const filterByTag = req.query.tag;
+      // http://localhost:3000/api/anuncios/price=value
       const filterByPrice = req.query.price;
 
       // Pagination
@@ -54,24 +55,13 @@ router.get('/', async (req, res, next) => {
         res.render('index');
       }
 
-      //Console msg
-      function mensajes (anuncios) {
-        if (anuncios.length > 0) {
-          console.log('Hay resultados')
-        } else {
-          console.log('No hay resultados que mostrar')
-        }
-      };
-
-      mensajes(anuncios)
-
     } catch (error) {
       next(error);
     }   
 });
 
-//  GET /api/anuncios/tags
-router.get('/tags', async (req, res, next) => {
+//  GET /api/anuncios?tag
+router.get('/', async (req, res, next) => {
   try {
 
   const tags = await Anuncio.distinctTags();
@@ -82,10 +72,13 @@ router.get('/tags', async (req, res, next) => {
 }
 });
 
-//Range price
+//Range price - // http://localhost:3000/value1-value2
 router.get('/:price', async (req, res, next) => {
   try {
-
+    //Tags list
+    res.locals.listaTag = [
+      { name: ['Work','Lifestyle', 'Motor','Mobile']}
+    ];
     let price = req.params.price;
   
     const anuncios = await Anuncio.price(price);
